@@ -7,13 +7,15 @@ from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
 from airflow.utils import yaml
 
+
+with open("include/config.yaml", "r") as file:
+    config = yaml.safe_load(file)
+
+
 @dag(schedule =None, start_date=datetime(2023, 1, 1), catchup=False, tags=["astro", "s3", "db"])
 def etl_pipeline_s3_to_db():
     @task
     def extract_from_s3() -> pd.DataFrame:
-        with open("include/config.yaml", "r") as file:
-            config = yaml.safe_load(file)
-
         s3_hook = S3Hook(aws_conn_id=config['aws_conn_id'])
         bucket = config["s3"]['bucket']
         file = config["s3"]['folder']
@@ -51,3 +53,4 @@ def etl_pipeline_s3_to_db():
     load_to_snowflake(transformed_df)
 
 etl_pipeline_s3_to_db()
+
