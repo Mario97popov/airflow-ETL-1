@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Airflow
+logs/
+*.db
+*.sqlite
+airflow.cfg
+venv/
+.env
+include/config.yaml
+lib
