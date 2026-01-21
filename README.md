@@ -1,6 +1,6 @@
 Overview
 
-This project demonstrates a simple ETL workflow using Apache Airflow. Data is extracted from AWS, transformed, and loaded into Snowflake for analytics.
+This project demonstrates a simple ETL workflow using Apache Airflow. Data is extracted from AWS, transformed, and loaded into Snowflake.
 
 Features
 
